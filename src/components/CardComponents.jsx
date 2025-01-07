@@ -1,7 +1,7 @@
 import React from "react";
 
 function CardComponent({ articolo, onRemove }) {
-    const { titolo, immagine, contenuto, categoria, tags, stato } = articolo;
+    const { titolo, immagine, contenuto, categoria, tags, stato, email } = articolo;
 
     return (
         <div className="card mb-2" style={{ width: "18rem" }}>
@@ -24,6 +24,7 @@ function CardComponent({ articolo, onRemove }) {
                         .filter((key) => tags[key])
                         .join(", ")}
                 </p>
+                <p className="card-text">{email}</p>
                 <p className="card-text">
                     <strong>Stato:</strong> {stato ? "Pubblicato" : "Bozza"}
                 </p>

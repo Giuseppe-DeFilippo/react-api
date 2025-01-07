@@ -7,11 +7,12 @@ function FormComponent({ articoli, setArticoli }) {
         contenuto: "",
         categoria: "",
         tags: [],
+        email: "",
         stato: false,
     });
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type, checked, } = e.target;
 
         setFormData((prevData) => ({
             ...prevData,
@@ -40,6 +41,7 @@ function FormComponent({ articoli, setArticoli }) {
                 contenuto: "",
                 categoria: "",
                 tags: [],
+                email: "",
                 stato: false,
             });
         }
@@ -64,7 +66,29 @@ function FormComponent({ articoli, setArticoli }) {
                 placeholder="URL immagine"
                 className="form-control mb-3"
             />
+            {/* Aggiungi un controllo per visualizzare l'anteprima dell'immagine solo se è stata inserita un'immagine */}
+            {/*inserire l url "copia indirizzo dell immagine"*/}
+            {
+                formData.immagine && (
+                    <div className="mb-3">
+                        <img
+                            src={formData.immagine}
+                            alt="Anteprima immagine"
+                            className="img-fluid"
+                            style={{ maxWidth: "100%", height: "auto" }}
+                        />
+                    </div>
+                )
+            }
 
+            < input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="inserisci email"
+                className="form-control mb-3"
+            />
             <textarea
                 name="contenuto"
                 value={formData.contenuto}
@@ -84,10 +108,15 @@ function FormComponent({ articoli, setArticoli }) {
                 <option value="tecnologia">Tecnologia</option>
                 <option value="sport">Sport</option>
                 <option value="musica">Musica</option>
+                <option value="film">film</option>
+                <option value="serie tv">serie tv</option>
+                <option value="anime">anime</option>
+
             </select>
 
+
             <div className="mb-3">
-                {["tecnologia", "sport", "musica"].map((tag) => (
+                {["tecnologia", "sport", "musica", "film", "serie tv", "anime"].map((tag) => (
                     <label key={tag} className="me-2">
                         <input
                             type="checkbox"
@@ -114,7 +143,7 @@ function FormComponent({ articoli, setArticoli }) {
             <button type="submit" className="btn btn-primary">
                 Aggiungi
             </button>
-        </form>
+        </form >
     );
 }
 
