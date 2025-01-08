@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-
 function FormComponent({ articoli, setArticoli }) {
     const [formData, setFormData] = useState({
         titolo: "",
@@ -52,6 +51,13 @@ function FormComponent({ articoli, setArticoli }) {
 
             })
     };
+    // const handleDelete = (id) => {
+    //     axios.delete(`http://localhost:3000/api/post/${id}`)
+    //         .then((response) => {
+    //             setArticoli(articoli.filter((articolo) => articolo._id !== id));
+    //         })
+
+    // }
 
     return (
         <form onSubmit={handleSubmit}>
