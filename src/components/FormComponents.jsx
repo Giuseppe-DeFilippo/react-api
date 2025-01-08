@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 function FormComponent({ articoli, setArticoli }) {
@@ -33,18 +34,23 @@ function FormComponent({ articoli, setArticoli }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (formData.titolo.trim()) {
-            setArticoli([...articoli, formData]);
-            setFormData({
-                titolo: "",
-                immagine: "",
-                contenuto: "",
-                categoria: "",
-                tags: [],
-                email: "",
-                stato: false,
-            });
-        }
+
+        axios.post("http://localhost:3000/api/post", formData)
+            .then(() => {
+                if (formData.titolo.trim()) {
+                    setArticoli([...articoli, formData]);
+                    setFormData({
+                        titolo: "",
+                        immagine: "",
+                        contenuto: "",
+                        categoria: "",
+                        tags: [],
+                        email: "",
+                        stato: false,
+                    });
+                }
+
+            })
     };
 
     return (
@@ -145,6 +151,6 @@ function FormComponent({ articoli, setArticoli }) {
             </button>
         </form >
     );
-}
 
+}
 export default FormComponent;
